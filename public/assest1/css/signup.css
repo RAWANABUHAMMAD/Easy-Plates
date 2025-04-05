@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    margin: 50px auto;
+    padding: 0 15px;
+}
+
+.body {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 440px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: white;
+}
+
+.box-1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.box-2 {
+    padding: 20px;
+    width: 100%;
+}
+
+.box-1,
+.box-2 {
+    width: 50%;
+}
+
+.h-1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #252525;
+}
+
+.text-muted {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.container .box {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    text-decoration: none;
+    color: #252525;
+    transition: all 0.3s ease;
+}
+
+.box:hover {
+    border: 2px solid #00a72f;
+}
+
+.fas.fa-times {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    height: 30px;
+    width: 30px;
+    background-color: rgba(0, 167, 47, 0.1);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #252525;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.fas.fa-times:hover {
+    color: #f50537;
+    background-color: rgba(245, 5, 55, 0.1);
+}
+
+.form-control {
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.btn-link {
+    text-decoration: none;
+   
+}
+.btn-link:hover {
+   color: #f50537;
+}
+
+@media (max-width: 767px) {
+    .body {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .box-1,
+    .box-2 {
+        width: 100%;
+    }
+    
+    .box-1 {
+        height: 200px;
+    }
+    
+    .box-2 {
+        padding: 20px;
+    }
+}
