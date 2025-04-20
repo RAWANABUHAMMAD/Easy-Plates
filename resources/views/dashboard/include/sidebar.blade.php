@@ -16,28 +16,30 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="../pages/tables.html">
-            <i class="material-symbols-rounded opacity-5">table_view</i>
-            <span class="nav-link-text ms-1">Tables</span>
+          <a class="nav-link text-dark" href="category">
+            <i class="material-symbols-rounded opacity-5">local_dining</i>
+
+            <span class="nav-link-text ms-1">Category</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="../pages/billing.html">
-            <i class="material-symbols-rounded opacity-5">receipt_long</i>
-            <span class="nav-link-text ms-1">Billing</span>
+          <a class="nav-link text-dark" href="recipes">
+            <i class="material-symbols-rounded opacity-5">restaurant</i>
+
+            <span class="nav-link-text ms-1">Recipes</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark" href="contacts">
             <i class="material-symbols-rounded opacity-5">mail</i>
-
             <span class="nav-link-text ms-1">contact</span>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link text-dark" href="../pages/rtl.html">
-            <i class="material-symbols-rounded opacity-5">format_textdirection_r_to_l</i>
-            <span class="nav-link-text ms-1">RTL</span>
+            <i class="material-symbols-rounded opacity-5 ">group</i>
+
+            <span class="nav-link-text ms-1">users</span>
           </a>
         </li>
         <li class="nav-item">

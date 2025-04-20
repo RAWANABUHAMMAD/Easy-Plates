@@ -2,9 +2,8 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark w-100 pt-2 pb-2">
     <div class="container-xl">
       <!-- Logo -->
-      <a class="d-flex align-items-center logo" href="home">
-        <img src="assest1/image/icons-svg/logo.svg" class="brand-img me-2" alt="Easy Plates Logo" style="width: 90px; height: 90px;" />
-      </a>
+      <img src="{{ asset('assest1/image/icons-svg/logo.svg') }}" class="brand-img me-2" alt="Easy Plates Logo" style="width: 90px; height: 90px;" />
+
       
       <!-- Mobile Toggle Button -->
       <button class="navbar-toggler offcanvas-nav-btn ms-auto me-3" type="button">
@@ -137,35 +136,8 @@
             </li>
 
             <!-- User Login Dropdown -->
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle drop_togn nav_hide fs-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person"></i>
-              </a>
-              <ul class="dropdown-menu drop_login shadow rounded-0" aria-labelledby="navbarDropdown" style="width:170px;">
-                <li>
-                  <div class="p-3">
-                    <b class="text-center fs-2 d-block"><i class="bi bi-person me-1 align-middle col_red"></i> Sign In</b>
-                    <p class="mt-3">Enter your email address and password to access account.</p>
-                    <form>
-                      <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter Email">
-                      </div>
-                      <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter Password">
-                      </div>
-                      <div class="mb-3 form-check">
-                        <input type="checkbox" class="form-check-input" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
-                      <button type="submit" class="btn btn-primary w-100">Sign In</button>
-                    </form>
-                    <p class="mt-3 text-center">Don't have an account? <a href="signup" class="col_red">Sign Up</a></p>
-                  </div>
-                </li>
-              </ul>
-            </li>
+            @include('public.layout.login')
+            
           </ul>
         </div>
       </div>    

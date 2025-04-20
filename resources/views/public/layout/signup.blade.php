@@ -54,7 +54,7 @@
                             <div class="mt-3 text-center">
                                 <p class="mb-0 text-muted">Already have an account?</p>
                                 <!-- Login Link -->
-                                <a href="#" class="btn btn-link p-0" style="color:#00a72f;">Log in</a>
+                                <a href="login" class="btn btn-link p-0" style="color:#00a72f;">Log in</a>
                             </div>
                         </div>
                     </form>

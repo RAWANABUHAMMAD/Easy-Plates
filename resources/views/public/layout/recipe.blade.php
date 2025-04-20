@@ -1,4 +1,4 @@
-@extends('public.masterpage')
+{{-- @extends('public.masterpage')
 
 @section('content')
 
@@ -55,24 +55,13 @@
                         <h5>CATEGORY</h5>
                         <hr class="line mb-4">
                         <ul class="mb-0 ms-2">
-                            <li class="border-top pt-3 mt-3">
-                                <a class="justify-content-between d-flex" href="recipe">
-                                    <span><i class="bi bi-arrow-right col_red font_14 me-1"></i> Main Dish</span> 
-                                    <span>(18)</span>
-                                </a>
-                            </li>
-                            <li class="border-top pt-3 mt-3">
-                                <a class="justify-content-between d-flex" href="shop_detail.html">
-                                    <span><i class="bi bi-arrow-right col_red font_14 me-1"></i> Dessert</span> 
-                                    <span>(06)</span>
-                                </a>
-                            </li>
-                            <li class="border-top pt-3 mt-3">
-                                <a class="justify-content-between d-flex" href="shop_detail.html">
-                                    <span><i class="bi bi-arrow-right col_red font_14 me-1"></i> Appetizer</span> 
-                                    <span>(08)</span>
-                                </a>
-                            </li>
+                            @foreach ($categories as $category)
+                                <li class="border-top pt-3 mt-3">
+                                    <a class="justify-content-between d-flex" href="{{ url('shop_detail?category_id=' . $category->id) }}">
+                                        <span><i class="bi bi-arrow-right col_red font_14 me-1"></i> {{ $category->name }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -425,6 +414,205 @@
                                     <li class="d-inline-block mt-1 mb-1"><a class="border d-block" href="shop_detail.html">6</a></li>
                                     <li class="d-inline-block mt-1 mb-1"><a class="border d-block" href="shop_detail.html"><i class="bi bi-chevron-right"></i></a></li>
                                 </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection --}}
+@extends('public.masterpage')
+
+@section('content')
+
+<style>
+    .recipe-card {
+        transition: all 0.3s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .recipe-img-container {
+        height: 250px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .recipe-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+    }
+    .recipe-img-container:hover .recipe-img {
+        transform: scale(1.05);
+    }
+    .recipe-body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 1.25rem;
+    }
+    .recipe-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+        color: #333;
+    }
+    .recipe-price {
+        font-size: 1.2rem;
+        color: #e74c3c;
+        font-weight: 600;
+        margin-top: auto;
+    }
+    .cart-link {
+        background: rgba(255,255,255,0.9);
+        padding: 10px 0;
+    }
+    .cart-btn, .view-btn {
+        width: 35px;
+        height: 35px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        background-color: #28a745; /* اللون الأخضر المطلوب */
+        color: white;
+    }
+    .cart-btn:hover, .view-btn:hover {
+        background-color: #218838;
+        transform: scale(1.1);
+    }
+    .cart-btn {
+        margin-right: 5px;
+    }
+</style>
+
+<section id="center" class="center_o bg-light pt-3 pb-3">
+    <div class="container-xl">
+        <div class="row center_o1">
+            <div class="col-md-12">
+                <h6 class="mb-0 col_green"><a href="#">Home</a> <span class="me-2 ms-2"><i class="bi bi-caret-right-fill align-middle text-muted"></i></span> Recipes</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="shop" class="pt-5 pb-5">
+    <div class="container-xl">
+        <div class="row shop_1">
+            <!-- Left Sidebar - Filters -->
+            <div class="col-lg-3 col-md-4">
+                <div class="shop_1_left">
+                    <!-- Difficulty Filter -->
+                    <div class="shop_1_left1 shadow p-3">
+                        <h5>FILTER</h5>
+                        <hr class="line mb-3">
+                        
+                        <b class="d-block mb-3">FILTER BY DIFFICULTY</b>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="difficultyAll" checked>
+                            <label class="form-check-label" for="difficultyAll">
+                                <a href="{{ route('recipes.public') }}">All</a>
+                            </label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" value="" id="difficultyEasy">
+                            <label class="form-check-label" for="difficultyEasy">
+                                <a href="#">Easy</a>
+                            </label>
+                        </div>
+                        <div class="form-check mt-2">
+                            <input class="form-check-input" type="checkbox" value="" id="difficultyHard">
+                            <label class="form-check-label" for="difficultyHard">
+                                <a href="#">Hard</a>
+                            </label>
+                        </div>
+                        
+                        <!-- Price Filter -->
+                        <b class="d-block mb-3 mt-4">FILTER BY PRICE</b>
+                        <input type="range" class="form-range" id="customRange1">
+                        <span>Price: <b class="ms-2">Lowest to Highest</b></span>
+                    </div>
+                    
+                    <!-- Category Filter -->
+                    <div class="shop_1_left1 shadow p-3 mt-4">
+                        <h5>CATEGORY</h5>
+                        <hr class="line mb-4">
+                        <ul class="mb-0 ms-2">
+                            @foreach ($categories as $cat)
+                                <li class="border-top pt-3 mt-3">
+                                    <a class="justify-content-between d-flex" href="{{ route('recipes.byCategory', $cat->id) }}">
+                                        <span><i class="bi bi-arrow-right col_red font_14 me-1"></i> {{ $cat->name }}</span>
+                                        <span class="badge bg-secondary">{{ $cat->recipes_count }}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Right Content - Products -->
+            <div class="col-lg-9 col-md-8">
+                <div class="shop_1_right">
+                    <!-- Header with results count -->
+                    <div class="shop_1_right1 row">
+                        <div class="col-md-12">
+                            <div class="shop_1_right1_left mt-2">
+                                @if(isset($category))
+                                    <h4>Category: <span class="col_red">{{ $category->name }}</span></h4>
+                                @endif
+                                <b><span class="col_red">{{ $recipes->total() }}</span> Recipes Found</b>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Listing - Grid View -->
+                    <div class="row shop_1_right2 mt-4">
+                        <div class="col-md-12">
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                                @foreach($recipes as $recipe)
+                                <div class="col">
+                                    <div class="card recipe-card h-100 border-0 shadow-sm">
+                                        <div class="recipe-img-container">
+                                            <img src="{{ asset($recipe->image) }}" alt="{{ $recipe->name }}" class="recipe-img">
+                                        </div>
+                                        <div class="position-absolute bottom-0 start-0 end-0 text-center p-2 cart-link">
+                                            <ul class="mb-0 cart_link">
+                                                <li class="d-inline-block">
+                                                    <a class="cart-btn" href="/cart">
+                                                        <i class="bi bi-bag"></i>
+                                                    </a>
+                                                </li>
+                                                <li class="d-inline-block">
+                                                    <a class="view-btn" href="/detail">
+                                                        <i class="bi bi-eye"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="recipe-body">
+                                            <h5 class="recipe-title text-center">{{ $recipe->name }}</h5>
+                                            <div class="text-center mt-auto">
+                                                <span class="recipe-price">${{ number_format($recipe->price, 2) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <div class="paging mt-5">
+                                {{ $recipes->links() }}
                             </div>
                         </div>
                     </div>
