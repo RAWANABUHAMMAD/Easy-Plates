@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\IngredientController; 
+use App\Http\Controllers\RecipeIngredientController;
 
 
 
@@ -70,6 +72,10 @@ Route::resource('category', CategoryController::class);
 
 Route::resource('recipes', RecipeController::class);
 
+Route::resource('ingredient', IngredientController::class); 
+
+
+
 
 //  Route::get('/recipe', [CategoryController::class, 'showCategories']);
 
@@ -77,4 +83,12 @@ Route::get('/recipe', [App\Http\Controllers\RecipeController::class, 'publicInde
 Route::get('/recipe/category/{category}', [App\Http\Controllers\RecipeController::class, 'showByCategory'])->name('recipes.byCategory');
 
 
+
+
+
+Route::prefix('recipes/{recipe}/ingredients')->group(function () {
+    Route::get('/', [RecipeIngredientController::class, 'index'])->name('recipe_ingredients.index');
+    Route::post('/', [RecipeIngredientController::class, 'store'])->name('recipe_ingredients.store');
+    Route::delete('/{ingredient}', [RecipeIngredientController::class, 'destroy'])->name('recipe_ingredients.destroy');
+});
 

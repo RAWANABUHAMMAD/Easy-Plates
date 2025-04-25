@@ -35,7 +35,7 @@
                                         <td class="text-sm">${{ number_format($recipe->price, 2) }}</td>
                                         <td class="text-sm">
                                             @if($recipe->image)
-                                                <img src="{{ asset($recipe->image) }}" alt="recipe" width="60">
+                                                <img src="{{ asset($recipe->image) }}" alt="recipe" width="60" height="60" style="object-fit: cover;">
                                             @else
                                                 <span class="text-muted">No image</span>
                                             @endif
@@ -51,6 +51,11 @@
                                                 @method('DELETE')
                                                 <button class="text-danger font-weight-bold text-xs border-0 bg-transparent" onclick="return confirm('Are you sure?')">Delete</button>
                                             </form>
+                                            <a href="{{ route('recipe_ingredients.index', $recipe->id) }}" class="text-warning font-weight-bold text-xs me-2">
+                                                Ingredients
+                                            </a>
+                                            
+                                            
                                         </td>
                                     </tr>
                                 @endforeach

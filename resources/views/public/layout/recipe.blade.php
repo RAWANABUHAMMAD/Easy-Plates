@@ -593,7 +593,8 @@
                                                     </a>
                                                 </li>
                                                 <li class="d-inline-block">
-                                                    <a class="view-btn" href="/detail">
+                                                    <a class="cart-btn" href="/detail">
+ 
                                                         <i class="bi bi-eye"></i>
                                                     </a>
                                                 </li>

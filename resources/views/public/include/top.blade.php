@@ -5,6 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Easy Plates</title>
+	<link rel="icon" href="{{ asset('assest1/image/icons-svg/blackicon.svg') }}" type="image/svg+xml">
+
 <link href="{{ asset('assest1/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('assest1/css/global.css') }}" rel="stylesheet">
 <link href="{{ asset('assest1/css/index.css') }}" rel="stylesheet">

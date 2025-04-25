@@ -2,7 +2,8 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-dark opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand px-4 py-3 m-0" href=" dashboard " target="_blank">
-        <img src="assest1/image/icons-svg/logo.svg" class="brand-img me-2" alt="Easy Plates Logo" style="width: 26px; height: 26px;" />
+        <img src="{{ asset('assest1/image/icons-svg/blackicon.svg') }}" class="brand-img me-2" alt="Easy Plates Logo" style="width: 26px; height: 26px;" />
+
         <span class="ms-1 text-sm text-dark">Easy Plates</span>
       </a>
     </div>
@@ -10,44 +11,44 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active bg-gradient-dark text-white" href="dashboard">
+          <a class="nav-link active bg-gradient-dark text-white" href="/dashboard">
             <i class="material-symbols-rounded opacity-5">dashboard</i>
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="category">
+          <a class="nav-link text-dark" href="/category">
             <i class="material-symbols-rounded opacity-5">local_dining</i>
 
             <span class="nav-link-text ms-1">Category</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="recipes">
+          <a class="nav-link text-dark" href="/recipes">
             <i class="material-symbols-rounded opacity-5">restaurant</i>
 
             <span class="nav-link-text ms-1">Recipes</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="contacts">
-            <i class="material-symbols-rounded opacity-5">mail</i>
-            <span class="nav-link-text ms-1">contact</span>
+          <a class="nav-link text-dark" href="/ingredient">
+            <i class="material-symbols-rounded opacity-5">fastfood</i>
+            <span class="nav-link-text ms-1">Ingredients</span>
           </a>
-        </li>
+        
         <li class="nav-item">
           <a class="nav-link text-dark" href="../pages/rtl.html">
             <i class="material-symbols-rounded opacity-5 ">group</i>
-
             <span class="nav-link-text ms-1">users</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="../pages/notifications.html">
-            <i class="material-symbols-rounded opacity-5">notifications</i>
-            <span class="nav-link-text ms-1">Notifications</span>
+          <a class="nav-link text-dark" href="/contacts">
+            <i class="material-symbols-rounded opacity-5">mail</i>
+            <span class="nav-link-text ms-1">contact</span>
           </a>
         </li>
+        
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Account pages</h6>
         </li>
