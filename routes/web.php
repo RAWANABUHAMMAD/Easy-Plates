@@ -62,8 +62,10 @@ Route::get('signup', function () {
     return view('public.layout.signup');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard.layout.dashboard');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard.layout.dashboard');
+    });
 });
 
 Route::resource('contacts', ContactController::class);
@@ -83,6 +85,7 @@ Route::get('/recipe', [App\Http\Controllers\RecipeController::class, 'publicInde
 Route::get('/recipe/category/{category}', [App\Http\Controllers\RecipeController::class, 'showByCategory'])->name('recipes.byCategory');
 
 
+Route::get('/detail/{recipe}', [RecipeController::class, 'showDetails'])->name('recipes.details');
 
 
 
@@ -92,3 +95,9 @@ Route::prefix('recipes/{recipe}/ingredients')->group(function () {
     Route::delete('/{ingredient}', [RecipeIngredientController::class, 'destroy'])->name('recipe_ingredients.destroy');
 });
 
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

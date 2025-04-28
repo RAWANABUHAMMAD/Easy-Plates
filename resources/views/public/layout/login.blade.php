@@ -1,4 +1,4 @@
-<li class="nav-item dropdown">
+{{-- <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle drop_togn nav_hide fs-5" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
         <i class="bi bi-person"></i>
     </a>
@@ -30,4 +30,4 @@
 
                     <div class="text-center small">
                         Don't have an account? <a href="signup" class="col_red">Sign Up</a>
-                    </div>
+                    </div> --}}

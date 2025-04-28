@@ -14,13 +14,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name' => 'Rawan',
-            'email' => 'rawan@easyplates.com',
-            'password' => Hash::make('password123'),
-            'phone' => '0788888888',
-            'address' => 'Aqaba',
-            'role' => 'admin',
+        $this->call([
+            CategorySeeder::class,
+            
         ]);
     }
+
+
 }

@@ -23,31 +23,31 @@
           <!-- Main Navigation -->
           <ul class="navbar-nav align-items-lg-center ms-auto">
             <li class="nav-item"> 
-              <a class="nav-link dropdown-toggle active fs-4 ps-0" href="home" title="Visit home page">
+              <a class="nav-link dropdown-toggle active fs-4 ps-0" href="/home" title="Visit home page">
                 <i class="bi bi-house"></i>
               </a>
             </li>
             
             <li class="nav-item"> 
-              <a class="nav-link dropdown-toggle" href="about" title="About Us">
+              <a class="nav-link dropdown-toggle" href="/about" title="About Us">
                 About Us
               </a>
             </li>
             
             <li class="nav-item"> 
-              <a class="nav-link dropdown-toggle" href="recipe" title="Recipes">
+              <a class="nav-link dropdown-toggle" href="/recipe" title="Recipes">
                 Recipes
               </a>
             </li>
 
             <li class="nav-item"> 
-              <a class="nav-link dropdown-toggle" href="faq" title="FAQs">
+              <a class="nav-link dropdown-toggle" href="/faq" title="FAQs">
                 Faqs
               </a>
             </li>
             
             <li class="nav-item"> 
-              <a class="nav-link dropdown-toggle" href="contact" title="Contact Us">
+              <a class="nav-link dropdown-toggle" href="/contact" title="Contact Us">
                 Contact Us
               </a>
             </li>
@@ -136,7 +136,34 @@
             </li>
 
             <!-- User Login Dropdown -->
-            @include('public.layout.login')
+            <!-- User Authentication Links -->
+            @auth
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle fs-5" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> 
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item"><i class="bi bi-person"></i> Profile</a></li>
+                <li>
+                  <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                    @csrf
+                    <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"></i> Logout</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+            @else
+            <li class="nav-item">
+              <a class="nav-link fs-5" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <i class="bi bi-box-arrow-in-right"></i> 
+              </a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link fs-5" href="{{ route('register') }}">
+                <i class="bi bi-person-plus"></i> 
+              </a>
+            </li>
+            @endauth
             
           </ul>
         </div>
@@ -144,3 +171,64 @@
     </div>
   </nav>
 </section>
+
+
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content p-3" style="border-radius: 0;">
+      <div class="modal-header p-3" style="border-bottom: none;">
+        <h5 class="modal-title fs-7 fw-bold" id="loginModalLabel">Login</h5> <!-- أضفت fw-bold هنا -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-3">
+
+        <!-- Login Form Start -->
+        <form method="POST" action="{{ route('login') }}">
+          @csrf
+
+          <div class="mb-3">
+            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+              name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
+              placeholder="Email Address" style="border-radius: 0;">
+            @error('email')
+              <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+            @enderror
+          </div>
+
+          <div class="mb-3">
+            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+              name="password" required autocomplete="current-password" placeholder="Password" style="border-radius: 0;">
+            @error('password')
+              <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+            @enderror
+          </div>
+
+          <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" name="remember" id="remember"
+              {{ old('remember') ? 'checked' : '' }}>
+            <label class="form-check-label" for="remember">Remember Me</label>
+          </div>
+
+          <button type="submit" class="btn w-100 py-2" style="background-color:#00a72f; color:white; border-radius: 0;">
+            LOG IN
+          </button>
+
+          <div class="mt-3 text-center">
+            @if (Route::has('password.request'))
+              <a href="{{ route('password.request') }}" style="color:#00a72f;">Forgot Your Password?</a>
+            @endif
+          </div>
+
+          <div class="mt-2 text-center">
+            <p class="mb-0 text-muted">Don't have an account?</p>
+            <a href="{{ route('register') }}" style="color:#00a72f;">Sign up</a>
+          </div>
+        </form>
+        <!-- Login Form End -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

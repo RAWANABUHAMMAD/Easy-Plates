@@ -1,4 +1,4 @@
-@extends('dashboard.layouts.master')
+@extends('dashboard.masterpage')
 
 @section('content')
 <div class="container">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="price" class="form-label">Price ($)</label>
+            <label for="price" class="form-label">Price (JD)</label>
             <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price') }}">
         </div>
 

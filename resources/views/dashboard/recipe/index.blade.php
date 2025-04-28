@@ -32,7 +32,7 @@
                                         <td class="text-sm">{{ $loop->iteration }}</td>
                                         <td class="text-sm">{{ $recipe->name }}</td>
                                         <td class="text-sm">{{ \Illuminate\Support\Str::limit($recipe->description, 50) }}</td>
-                                        <td class="text-sm">${{ number_format($recipe->price, 2) }}</td>
+                                        <td class="text-sm">JD{{ number_format($recipe->price, 2) }}</td>
                                         <td class="text-sm">
                                             @if($recipe->image)
                                                 <img src="{{ asset($recipe->image) }}" alt="recipe" width="60" height="60" style="object-fit: cover;">

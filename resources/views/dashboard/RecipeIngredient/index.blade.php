@@ -13,39 +13,55 @@
 
                     <!-- Current Ingredients -->
                     <h6 class="mb-3 fw-bold">Current Ingredients:</h6>
-                    <ul class="list-group mb-4">
-                        @forelse($recipe->ingredients as $ingredient)
-                            <li class="list-group-item d-flex justify-content-between align-items-center p-3 mb-2 shadow-sm rounded-3">
-                                <span>{{ $ingredient->ingredient_name }}</span>
-                                <form action="{{ route('recipe_ingredients.destroy', [$recipe->id, $ingredient->id]) }}" method="POST" class="m-0">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger px-3" onclick="return confirm('Remove this ingredient?')">Remove</button>
-                                </form>
-                            </li>
-                        @empty
-                            <li class="list-group-item text-muted py-3 rounded-3">No ingredients assigned to this recipe.</li>
-                        @endforelse
-                    </ul>
+                    
+                    @if($recipe->ingredients->isEmpty())
+                        <div class="alert alert-info rounded-3">
+                            No ingredients assigned to this recipe.
+                        </div>
+                    @else
+                        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4 mb-4">
+                            @foreach($recipe->ingredients as $ingredient)
+                                <div class="col">
+                                    <div class="card h-100 shadow-sm border-0 rounded-3">
+                                        <div class="card-body p-3 d-flex flex-column">
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <span class="fw-bold">{{ $ingredient->ingredient_name }}</span>
+                                                <form action="{{ route('recipe_ingredients.destroy', [$recipe->id, $ingredient->id]) }}" method="POST" class="m-0">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger p-1" onclick="return confirm('Remove this ingredient?')">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
 
-                    <!-- Add New Ingredient -->
+                    <!-- Add New Ingredients -->
                     <form action="{{ route('recipe_ingredients.store', $recipe->id) }}" method="POST">
                         @csrf
                         <div class="mb-4">
-                            <label for="ingredient_id" class="form-label fw-bold mb-2">Add New Ingredient</label>
-                            <div class="input-group shadow-sm rounded-3">
-                                <span class="input-group-text bg-dark text-white">
-                                    <i class="fas fa-carrot"></i>
-                                </span>
-                                <select name="ingredient_id" id="ingredient_id" class="form-select px-3 py-2 border-start-0 rounded-end">
-                                    <option disabled selected>Choose an ingredient...</option>
-                                    @foreach($availableIngredients as $ingredient)
-                                        <option value="{{ $ingredient->id }}">{{ $ingredient->ingredient_name }}</option>
-                                    @endforeach
-                                </select>
+                            <label for="ingredient_id" class="form-label fw-bold mb-2">Add New Ingredients</label>
+                            <div class="row g-3 align-items-center">
+                                <div class="col-md-8">
+                                    <select name="ingredient_id[]" id="ingredient_id" class="form-select" multiple style="height: auto; min-height: 120px;">
+                                        @foreach($availableIngredients as $ingredient)
+                                            <option value="{{ $ingredient->id }}">{{ $ingredient->ingredient_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    <small class="text-muted">Hold Ctrl/Cmd to select multiple ingredients</small>
+                                </div>
+                                <div class="col-md-4 d-flex align-items-end">
+                                    <button type="submit" class="btn btn-dark w-100 py-2">
+                                        <i class="fas fa-plus me-2"></i> Add Selected
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-dark px-4 py-2 rounded-pill">+ Add Ingredient</button>
                     </form>
 
                 </div>

@@ -55,6 +55,13 @@ class RecipeController extends Controller
         return view('public.layout.recipe', compact('recipes', 'categories', 'category'));
     }
 
+    // ✅ Show Recipe Details (Public Page)
+    public function showDetails(Recipe $recipe)
+    {
+        $recipe->load('ingredients');
+        return view('public.layout.detail', compact('recipe'));
+    }
+
     // Dashboard Index for Recipes
     public function index()
     {
